@@ -1,8 +1,19 @@
+import axios from 'axios'
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
-    https://api.github.com/users/<your name>
+    https://api.github.com/users/princeali415
 */
+
+// axios.get('https://api.github.com/users/princeali415')
+// .then(res => {
+// console.log(res.data) 
+// })
+// .catch(err => {
+// console.log('this is the error', err) 
+// })
+
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -16,6 +27,16 @@
   STEP 4: Pass the data received from Github into your function,
     and append the returned markup to the DOM as a child of .cards
 */
+
+axios.get('https://api.github.com/users/princeali415')
+.then(res => {
+CardMaker(res.data) 
+})
+.catch(err => {
+console.log('this is the error', err) 
+})
+
+
 
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
@@ -49,6 +70,61 @@ const followersArray = [];
       </div>
     </div>
 */
+
+function CardMaker(obj){
+
+  //create the elements
+
+  const newCard = document.createElement('div')
+  const profileImg = document.createElement('img')
+  const cardInfo = document.createElement('div')
+  const cardH3 = document.createElement('h3')
+  const username = document.createElement('p')
+  const location = document.createElement('p')
+  const profile = document.createElement('p')
+  const profileLink = document.createElement('a')
+  const followers = document.createElement('p')
+  const following = document.createElement('p')
+  const bio = document.createElement('p')
+
+  // add classes to elements
+
+  newCard.classList.add('card')
+  profileImg.setAttribute('src', obj.avatar_url)
+  cardInfo.classList.add('card-info')
+  cardH3.classList.add('name')
+  cardH3.textContent = `Name: ${obj.name}`
+  username.classList.add('username')
+  username.textContent = obj.login
+  location.textContent = `Location: ${obj.location}`
+  profileLink.href = obj.html_url
+  profileLink.textContent = 'Here is my HTML'
+  profile.textContent = 'Profile:'
+  followers.textContent = `Followers: ${obj.followers}`
+  following.textContent = `Following: ${obj.following}`
+  bio.textContent = `Bio: ${obj.bio}`
+
+  // add structure 
+
+  newCard.appendChild(profileImg);
+  newCard.appendChild(cardInfo);
+  cardInfo.appendChild(cardH3);
+  cardInfo.appendChild(username);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+  profile.appendChild(profileLink);
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(bio);
+
+  // append to class container in body 
+
+  const entryP = document.querySelector('.container')
+
+  //return 
+  
+  return entryP.append(newCard)
+}
 
 /*
   List of LS Instructors Github username's:
