@@ -134,6 +134,7 @@ function CardMaker(obj){
   //return 
   
   return entryP.append(card)
+  
 }
 
 /*
