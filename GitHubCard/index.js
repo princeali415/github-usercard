@@ -6,13 +6,13 @@ import axios from 'axios'
     https://api.github.com/users/princeali415
 */
 
-// axios.get('https://api.github.com/users/princeali415')
-// .then(res => {
-// console.log(res.data) 
-// })
-// .catch(err => {
-// console.log('this is the error', err) 
-// })
+axios.get('https://api.github.com/users/princeali415')
+.then(res => {
+console.log(res.data) 
+})
+.catch(err => {
+console.log('this is the error', err) 
+})
 
 
 /*
@@ -49,7 +49,17 @@ console.log('this is the error', err)
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+
+followersArray.forEach(i => {
+  axios.get(`https://api.github.com/users/${i}`)
+  .then( res => {
+    return CardMaker(res.data)
+  })
+  .catch(err => {
+    console.log('this is the error:', err)
+  })
+})
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
