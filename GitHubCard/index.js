@@ -85,10 +85,10 @@ function CardMaker(obj){
 
   //create the elements
 
-  const newCard = document.createElement('div')
-  const profileImg = document.createElement('img')
-  const cardInfo = document.createElement('div')
-  const cardH3 = document.createElement('h3')
+  const card = document.createElement('div')
+  const img = document.createElement('img')
+  const info = document.createElement('div')
+  const h3 = document.createElement('h3')
   const username = document.createElement('p')
   const location = document.createElement('p')
   const profile = document.createElement('p')
@@ -99,11 +99,11 @@ function CardMaker(obj){
 
   // add classes to elements
 
-  newCard.classList.add('card')
-  profileImg.setAttribute('src', obj.avatar_url)
-  cardInfo.classList.add('card-info')
-  cardH3.classList.add('name')
-  cardH3.textContent = `Name: ${obj.name}`
+  card.classList.add('card')
+  img.setAttribute('src', obj.avatar_url)
+  info.classList.add('card-info')
+  h3.classList.add('name')
+  h3.textContent = `Name: ${obj.name}`
   username.classList.add('username')
   username.textContent = obj.login
   location.textContent = `Location: ${obj.location}`
@@ -116,16 +116,16 @@ function CardMaker(obj){
 
   // add structure 
 
-  newCard.appendChild(profileImg);
-  newCard.appendChild(cardInfo);
-  cardInfo.appendChild(cardH3);
-  cardInfo.appendChild(username);
-  cardInfo.appendChild(location);
-  cardInfo.appendChild(profile);
+  card.appendChild(img);
+  card.appendChild(info);
+  info.appendChild(h3);
+  info.appendChild(username);
+  info.appendChild(location);
+  info.appendChild(profile);
   profile.appendChild(profileLink);
-  cardInfo.appendChild(followers);
-  cardInfo.appendChild(following);
-  cardInfo.appendChild(bio);
+  info.appendChild(followers);
+  info.appendChild(following);
+  info.appendChild(bio);
 
   // append to class container in body 
 
@@ -133,7 +133,7 @@ function CardMaker(obj){
 
   //return 
   
-  return entryP.append(newCard)
+  return entryP.append(card)
 }
 
 /*
